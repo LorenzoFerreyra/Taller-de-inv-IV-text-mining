@@ -38,3 +38,26 @@ imagen <- image_read("https://upload.wikimedia.org/wikipedia/commons/f/f9/Casa_d
 # Mostrarla en el visor
 print(imagen)
 image_write(imagen, path = "casa_gobierno_santa_fe.jpg")
+
+# Datos clave de la ciudad
+infobox <- pagina %>%
+  html_element(".infobox") %>%
+  html_table()
+
+# Ver la infobox
+print(infobox)
+
+# genero un dataframe con algunas curiosidades en el dialecto de la ciudad / region
+tabla <- pagina %>%
+  html_node(xpath = "/html/body/div[2]/div/div[3]/main/div[3]/div[3]/div[1]/table[7]") %>%
+  html_table(fill = TRUE)
+
+print(tabla)
+
+tabla_limpia <- tabla %>%
+  na.omit()  
+
+
+print(tabla_limpia)
+
+write.csv(tabla_limpia, "tabla_santa_fe.csv", row.names = FALSE)
