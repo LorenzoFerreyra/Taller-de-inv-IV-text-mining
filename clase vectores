@@ -1,0 +1,25 @@
+
+library(tidyverse) # para modelar
+library(jsonlite)
+
+url <- paste0(
+  "https://raw.githubusercontent.com/LorenzoFerreyra/",
+  "reddit-data-extraction/main/devsarg.json"
+)
+data <- stream_in(url(url))
+str(data)
+
+posts_data <- data$posts
+
+comments_data <- data.frame(
+  title = data$title,
+  score = data$score,
+  id = data$id,
+  url = data$url,
+  comms_num = data$comms_num,
+  created = data$created,
+  body = data$body
+)
+class(merged_data)
+merged_data <- left_join(posts_data, comments_data, by = c("id" = "id_post"))
+columns(posts_data)
