@@ -6,10 +6,10 @@ url <- paste0(
   "https://raw.githubusercontent.com/LorenzoFerreyra/",
   "reddit-data-extraction/main/devsarg.json"
 )
-data <- stream_in(url(url))
-str(data)
-
-posts_data <- data$posts
+data <- fromJSON(url)
+print(data)
+posts_data <- flatten(data$posts)
+posts_data <- as.data.frame(posts_data)
 
 comments_data <- data.frame(
   title = data$title,
@@ -20,6 +20,7 @@ comments_data <- data.frame(
   created = data$created,
   body = data$body
 )
+
 class(merged_data)
 merged_data <- left_join(posts_data, comments_data, by = c("id" = "id_post"))
-columns(posts_data)
+colnames(posts_data)
