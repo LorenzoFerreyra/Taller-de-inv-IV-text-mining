@@ -1,0 +1,6 @@
+library(readr)
+
+df <- read_csv("https://infra.datos.gob.ar/catalog/jgm/dataset/25/distribution/25.1/download/comunidad-abierta-iniciativas.csv", 
+    locale = locale(encoding = "ISO-8859-1"))
+
+print(df)
