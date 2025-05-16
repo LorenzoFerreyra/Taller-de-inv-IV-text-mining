@@ -4,3 +4,6 @@ df <- read_csv("https://infra.datos.gob.ar/catalog/jgm/dataset/25/distribution/2
     locale = locale(encoding = "ISO-8859-1"))
 
 print(df)
+
+
+
